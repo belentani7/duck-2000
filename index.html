@@ -7,14 +7,12 @@
 <meta name="description" content="Duck, produtor musical de Aracaju. Beatmaker, mixagem e masterização. 36M+ streams, 40+ lançamentos. Assistente de IA de produção e estúdio interativo.">
 <meta name="author" content="@belentani_">
 <meta name="publisher" content="@belentani_">
-<link rel="canonical" href="https://belentani7.github.io/heyduck/">
+<link rel="canonical" href="https://heyduck.netlify.app/">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:site_name" content="DUCK — Criado por @belentani_">
 
-<meta name="description" content="Duck, produtor musical de Aracaju. Beatmaker, mixagem e masterização. 36M+ streams, 40+ lançamentos.">
 <meta name="theme-color" content="#080e08">
 <meta name="keywords" content="duck, produtor musical, beatmaker, mixagem, masterização, aracaju, sergipe">
-<meta name="author" content="DUCK">
-<link rel="canonical" href="https://heyduck.netlify.app/">
 <meta property="og:title" content="DUCK — Produção Musical | Beatmaker, Mixagem & Masterização">
 <meta property="og:description" content="Duck, produtor musical de Aracaju. 36M+ streams, 40+ lançamentos. Beatmaker, mixagem e masterização.">
 <meta property="og:image" content="https://heyduck.netlify.app/images/VERDE/capa-1920x1080.jpg">
@@ -45,8 +43,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/CustomEase.min.js"></script>
 <script src="https://unpkg.com/lenis@1.3.25/dist/lenis.min.js"></script>
-<script src="data.js"></script>
+<script src="data.js" defer></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{--bg:#080e08;--g:#39582f;--gd:#15210f;--a:#9acb6b;--c:#efe7d0;--ms:#1e3018;--f:'Space Grotesk',sans-serif;--fb:'Inter',sans-serif;
@@ -1097,6 +1096,320 @@ body.theme-green {
   box-shadow: 0 0 15px var(--color-border);
 }
 
+/* ===== DUCK FRONT STUDIO OVERRIDE ===== */
+:root{
+  --duck-purple:#17051f;
+  --duck-ink:#050806;
+  --duck-panel:#101810;
+  --duck-green:#9acb6b;
+  --duck-lime:#caff72;
+  --duck-cyan:#72f3ff;
+  --duck-red:#ff4f64;
+  --duck-amber:#ffb84d;
+  --duck-paper:#f1ead6;
+}
+
+.hero-live-console{
+  width:min(760px,92vw);
+  margin:2rem auto 0;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  opacity:0;
+  transform:translateY(18px);
+}
+
+.hero-console-trigger{
+  min-width:0;
+  min-height:46px;
+  border:1px solid rgba(202,255,114,.22);
+  border-radius:6px;
+  background:rgba(5,8,6,.62);
+  color:var(--duck-paper);
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  backdrop-filter:blur(14px);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);
+}
+
+.hero-console-trigger:hover,
+.hero-console-trigger:focus-visible{
+  color:var(--duck-ink);
+  background:var(--duck-lime);
+  border-color:var(--duck-lime);
+}
+
+.hero-console-trigger.is-hot{
+  color:#fff;
+  border-color:rgba(255,79,100,.65);
+  background:rgba(255,79,100,.16);
+}
+
+.instruments-section{
+  isolation:isolate;
+  background:
+    linear-gradient(180deg,rgba(23,5,31,.98) 0%,rgba(5,8,6,.98) 22%,rgba(7,20,14,1) 100%),
+    url("images/VERDE/setup-3-1920x1280.jpg") center/cover fixed;
+}
+
+.instruments-section::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(rgba(202,255,114,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(202,255,114,.035) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:linear-gradient(to bottom,transparent,black 12%,black 82%,transparent);
+}
+
+.instruments-section .section-header{
+  max-width:980px;
+  margin-inline:auto;
+}
+
+.instruments-section .section-header h2{
+  letter-spacing:0;
+  text-wrap:balance;
+}
+
+.studio-console{
+  width:min(1320px,100%);
+  margin:0 auto 6rem;
+  display:grid;
+  grid-template-columns:minmax(210px,.9fr) minmax(320px,1.6fr) minmax(210px,.9fr);
+  gap:14px;
+  transform-style:preserve-3d;
+}
+
+.console-rack,
+.console-core,
+.piano-container,
+.rhythm-container,
+.voice-container,
+.recorder-container,
+.midi-controller,
+.voice-studio-box{
+  border-radius:8px;
+  background:
+    linear-gradient(180deg,rgba(20,30,20,.94),rgba(6,9,7,.95)),
+    radial-gradient(circle at 20% 0%,rgba(114,243,255,.11),transparent 34%);
+  border:1px solid rgba(202,255,114,.18);
+  box-shadow:
+    0 28px 80px rgba(0,0,0,.58),
+    inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.console-rack,
+.console-core{
+  min-height:240px;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.console-rack::before,
+.console-core::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent,rgba(202,255,114,.08),transparent);
+  transform:translateX(-120%);
+  pointer-events:none;
+}
+
+.rack-label,
+.console-subtitle{
+  font-family:var(--font-mono);
+  font-size:.62rem;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(241,234,214,.42);
+}
+
+.console-title{
+  margin-top:38px;
+  font-family:var(--font-display);
+  font-size:clamp(2.4rem,5vw,5.4rem);
+  font-weight:800;
+  line-height:.9;
+  letter-spacing:0;
+  color:var(--duck-paper);
+  text-transform:uppercase;
+}
+
+.console-subtitle{
+  margin-top:14px;
+  color:var(--duck-lime);
+}
+
+.console-actions{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:28px;
+}
+
+.console-actions button{
+  min-width:0;
+  border:1px solid rgba(202,255,114,.18);
+  border-radius:6px;
+  background:rgba(202,255,114,.05);
+  color:var(--duck-paper);
+  font-family:var(--font-mono);
+  font-size:.66rem;
+  font-weight:800;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+
+.console-actions button:hover,
+.console-actions button:focus-visible{
+  background:var(--duck-lime);
+  color:var(--duck-ink);
+}
+
+.front-meter{
+  height:180px;
+  display:flex;
+  align-items:end;
+  gap:8px;
+  margin-top:22px;
+}
+
+.front-meter span{
+  flex:1;
+  height:var(--level);
+  min-height:16px;
+  border-radius:4px 4px 0 0;
+  background:linear-gradient(180deg,var(--duck-red),var(--duck-amber) 34%,var(--duck-lime) 70%,var(--duck-cyan));
+  box-shadow:0 0 18px rgba(202,255,114,.22);
+}
+
+.front-pad-grid{
+  margin-top:22px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+
+.front-pad-grid span{
+  aspect-ratio:1;
+  border-radius:7px;
+  border:1px solid rgba(202,255,114,.2);
+  background:rgba(202,255,114,.06);
+  box-shadow:inset 0 0 18px rgba(0,0,0,.45);
+}
+
+.front-pad-grid span:nth-child(3n){
+  border-color:rgba(114,243,255,.32);
+}
+
+.front-pad-grid span:nth-child(5n){
+  border-color:rgba(255,79,100,.38);
+}
+
+.piano-container,
+.rhythm-container,
+.voice-container,
+.recorder-container{
+  padding:clamp(1.25rem,3vw,2.5rem);
+}
+
+.piano-title,
+.rhythm-title,
+.voice-title,
+.recorder-title,
+.midi-title{
+  letter-spacing:0;
+}
+
+.key-white{
+  background:linear-gradient(180deg,#f1ead6,#c8c3b4);
+}
+
+.key-white:hover,
+.key-white.active{
+  background:linear-gradient(180deg,#ffffff,var(--duck-lime));
+}
+
+.key-black{
+  background:linear-gradient(180deg,#141219,#050806);
+  border-color:rgba(114,243,255,.22);
+}
+
+.rhythm-cell,
+.midi-pad,
+.launchpad-pad,
+.effect-card{
+  border-radius:7px;
+}
+
+.rhythm-cell.active,
+.midi-pad.active,
+.launchpad-pad.active,
+.synth-key.active{
+  box-shadow:0 0 28px rgba(202,255,114,.6), inset 0 0 14px rgba(255,255,255,.24);
+}
+
+.voice-visualizer,
+.recorder-visualizer{
+  background:
+    linear-gradient(180deg,rgba(6,9,7,.96),rgba(14,20,13,.96)),
+    repeating-linear-gradient(90deg,rgba(202,255,114,.06) 0 1px,transparent 1px 18px);
+}
+
+.effect-card.active{
+  border-color:var(--duck-lime);
+  background:linear-gradient(180deg,rgba(202,255,114,.12),rgba(6,9,7,.92));
+}
+
+.rec-btn.record.recording{
+  color:#fff;
+  background:rgba(255,79,100,.22);
+}
+
+@media(max-width:900px){
+  .hero-live-console,
+  .studio-console,
+  .console-actions{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .console-core{
+    grid-column:1 / -1;
+    order:-1;
+  }
+}
+
+@media(max-width:640px){
+  .hero-live-console,
+  .studio-console,
+  .console-actions{
+    grid-template-columns:1fr;
+  }
+
+  .hero-console-trigger{
+    min-height:42px;
+  }
+
+  .piano{
+    overflow-x:auto;
+    justify-content:flex-start;
+    padding-bottom:1rem;
+  }
+
+  .effects-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1205,6 +1518,12 @@ body.theme-green {
     <div class="hero-btns">
       <button class="btn-p" onclick="document.getElementById('instruments').scrollIntoView({behavior:'smooth'})"><span data-i18n="hero_cta1">EXPLORAR ESTÚDIO</span></button>
       <button class="btn-s" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"><span data-i18n="hero_cta2">CONTRATAR →</span></button>
+    </div>
+    <div class="hero-live-console" aria-label="DUCK live studio controls">
+      <button class="hero-console-trigger" type="button" data-duck-jump="piano">PLAY PIANO</button>
+      <button class="hero-console-trigger" type="button" data-duck-jump="rhythm">BUILD BEAT</button>
+      <button class="hero-console-trigger" type="button" data-duck-jump="voice">VOICE FX</button>
+      <button class="hero-console-trigger is-hot" type="button" data-duck-jump="recorder">REC</button>
     </div>
   </div>
   <div class="hero-wf" id="heroWaveform"></div>
@@ -1419,6 +1738,34 @@ body.theme-green {
     <p data-i18n="inst_p">Experimente o estúdio pelo navegador</p>
   </div>
 
+  <div class="studio-console" aria-label="DUCK browser studio">
+    <div class="console-rack console-rack--signal">
+      <div class="rack-label">input signal</div>
+      <div class="front-meter" aria-hidden="true">
+        <span style="--level:31%"></span><span style="--level:48%"></span><span style="--level:74%"></span><span style="--level:62%"></span><span style="--level:86%"></span><span style="--level:43%"></span><span style="--level:68%"></span><span style="--level:37%"></span>
+      </div>
+    </div>
+    <div class="console-core">
+      <div class="console-title">DUCK FRONT STUDIO</div>
+      <div class="console-subtitle">piano / rhythm / midi / voice / fx</div>
+      <div class="console-actions">
+        <button type="button" data-duck-jump="piano">Piano</button>
+        <button type="button" data-duck-jump="rhythm">Rhythm</button>
+        <button type="button" data-duck-jump="voice">Voice</button>
+        <button type="button" data-duck-jump="recorder">Recorder</button>
+      </div>
+    </div>
+    <div class="console-rack console-rack--midi">
+      <div class="rack-label">midi grid</div>
+      <div class="front-pad-grid" aria-hidden="true">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+
   <div class="piano-container">
     <div class="piano-title"><span data-i18n="piano_t">Piano</span> <span data-i18n="piano_t2">Interativo</span></div>
     <div class="piano" id="piano">
@@ -1506,11 +1853,11 @@ body.theme-green {
   </div>
 </section>
 
-<!-- JUGUETES DE ESTUDIO -->
+<!-- BRINQUEDOS DE ESTÚDIO -->
 <section class="toys-section" id="toys">
   <div class="toys-header">
     <div class="sec-lbl">// PLAYGROUND</div>
-    <h2>JUGUETES <em>DE ESTUDIO</em></h2>
+    <h2>BRINQUEDOS <em>DE ESTÚDIO</em></h2>
     <p data-i18n="toys_p">AINDA EM DÚVIDA? TENTA FAZER TU MESMO.</p>
     <div class="toys-subtitle">Brinca, grava, cria — o estúdio é teu.</div>
   </div>
@@ -2054,19 +2401,19 @@ const translations = {
     singles_lbl: "// 004 — SINGLES", singles_h: "LANÇAMENTOS <em>OFICIAIS</em>",
     tools_lbl: "// 005 — FERRAMENTAS EXTRAS", tools_h: "O <em>ECOSSISTEMA</em> DUCK",
     tool1_t: "MIDI CONTROLLER", tool1_d: "AKAI MPK Mini para programar beats e melodias diretamente do hardware.",
-    tool2_t: "MIXING CONSOLE", tool2_d: "Focusrite Scarlett 18i20 com 18 entradas e 20 saidas para sessoes completas.",
-    tool3_t: "MONITORES DE REFERENCIA", tool3_d: "Genelec 8040B para mixes precisos em cada frequencia.",
-    tool4_t: "SINTETIZADOR ANALOGICO", tool4_d: "Moog Sub 37 para sons quentes e texturas unicas.",
-    tool5_t: "DRUM MACHINE", tool5_d: "Elektron Digitakt para ritmos programaveis e samples.",
-    tool6_t: "CABINE DE GRAVACAO", tool6_d: "Tratamento acustico profissional com Neumann U87 e Shure SM7B.",
-    tool7_t: "DAW PROFISSIONAL", tool7_d: "Ableton Live Suite + Logic Pro para producao e mixagem.",
+    tool2_t: "MIXING CONSOLE", tool2_d: "Focusrite Scarlett 18i20 com 18 entradas e 20 saídas para sessões completas.",
+    tool3_t: "MONITORES DE REFERÊNCIA", tool3_d: "Genelec 8040B para mixagens precisas em cada frequência.",
+    tool4_t: "SINTETIZADOR ANALÓGICO", tool4_d: "Moog Sub 37 para sons quentes e texturas únicas.",
+    tool5_t: "DRUM MACHINE", tool5_d: "Elektron Digitakt para ritmos programáveis e samples.",
+    tool6_t: "CABINE DE GRAVAÇÃO", tool6_d: "Tratamento acústico profissional com Neumann U87 e Shure SM7B.",
+    tool7_t: "DAW PROFISSIONAL", tool7_d: "Ableton Live Suite + Logic Pro para produção e mixagem.",
     tool8_t: "AURICULARES", tool8_d: "Beyerdynamic DT 990 Pro para monitoramento detalhado.",
-    tool9_t: "INTERFACE USB", tool9_d: "Universal Audio Apollo x8 para conversao AD/DA de alta resolucao.",
-    tool10_t: "GUITARRA ELETRICA", tool10_d: "Fender Stratocaster para gravar riffs e arranjos diretos.",
-    tool11_t: "VIOLINO / CORDAS", tool11_d: "Amostras de cordas orquestrais para camadas cinematicas.",
-    tool12_t: "SINTETIZADOR MODULAR", tool12_d: "Eurorack para sons experimentais e texturas unicas.",
-    tool13_t: "PERCUSSAO ACUSTICA", tool13_d: "Congas, bongos, cajon para ritmos organicos e world music.",
-    tool14_t: "OUTBOARD GEAR", tool14_d: "Compressores analogicos e EQs para cor e warmth na cadeia.",
+    tool9_t: "INTERFACE USB", tool9_d: "Universal Audio Apollo x8 para conversão AD/DA de alta resolução.",
+    tool10_t: "GUITARRA ELÉTRICA", tool10_d: "Fender Stratocaster para gravar riffs e arranjos diretos.",
+    tool11_t: "VIOLINO / CORDAS", tool11_d: "Amostras de cordas orquestrais para camadas cinematográficas.",
+    tool12_t: "SINTETIZADOR MODULAR", tool12_d: "Eurorack para sons experimentais e texturas únicas.",
+    tool13_t: "PERCUSSÃO ACÚSTICA", tool13_d: "Congas, bongos, cajon para ritmos orgânicos e world music.",
+    tool14_t: "OUTBOARD GEAR", tool14_d: "Compressores analógicos e EQs para cor e warmth na cadeia.",
     tool15_t: "SAMPLE LIBRARIES", tool15_d: "Spitfire, Native Instruments, Output para orquestra e sound design.",
     studio_lbl: "// 008 — ESTÚDIO", studio_h: "ONDE A<br><em>MÁGICA</em><br>ACONTECE", studio_sub: "Home Studio · Mix Station · Production · Recording · Mixing · Mastering",
     studio_s1: "ESTAÇÕES", studio_s2: "VIAS DE ÁUDIO", studio_s3: "KHZ / 24-BIT",
@@ -2095,7 +2442,7 @@ const translations = {
     rec_btn1: "GRAVAR", rec_btn2: "PARAR", rec_btn3: "TOCAR",
     fx_h: "EFEITOS DE VOZ",
     fx1: "Correção de tom", fx2: "Reverberação", fx3: "Tom alto e rápido", fx3_n: "VOZ DE ESQUILO",
-    fx4: "Tom baixo e profundo", fx4_n: "VOZ GRAUDA", fx5: "Repetição com decaimento", fx6: "Voz metálica",
+    fx4: "Tom baixo e profundo", fx4_n: "VOZ GROSSA", fx5: "Repetição com decaimento", fx6: "Voz metálica",
     pre_h: "PRESETS", pre1: "NORMAL", pre2: "CANTOR", pre3: "ESQUILO", pre4: "MONSTRO", pre5: "ROBÔ", pre6: "CONCERTO",
     contact_lbl: "// 009 — CONTATO", contact_h: "VAMOS FALAR", contact_p: "Pronto para criar algo épico? Me conte sua visão.",
     gallery_lbl: "// 006 — GALERIA", gallery_h: "O <em>ESTÚDIO</em> EM IMAGENS",
@@ -3497,6 +3844,373 @@ document.addEventListener('mouseover', (e) => {
   });
 })();
 </script>
+
+<script>
+/* ===== DUCK FRONT STUDIO MASTER LAYER ===== */
+(function(){
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasGsap = Boolean(window.gsap && window.ScrollTrigger);
+
+  if (hasGsap) {
+    gsap.registerPlugin(ScrollTrigger);
+    if (window.CustomEase) {
+      gsap.registerPlugin(CustomEase);
+      CustomEase.create('duckSnap', 'M0,0 C0.16,1 0.3,1 1,1');
+      CustomEase.create('duckDrift', 'M0,0 C0.22,0.61 0.36,1 1,1');
+    }
+
+    gsap.to('.hero-live-console', {
+      opacity: 1,
+      y: 0,
+      duration: 0.9,
+      delay: 1.45,
+      ease: window.CustomEase ? 'duckSnap' : 'power4.out'
+    });
+
+    gsap.to(':root', {
+      '--bg': '#07140e',
+      '--gd': '#101810',
+      '--a': '#caff72',
+      '--c': '#f1ead6',
+      scrollTrigger: {
+        trigger: '#instruments',
+        start: 'top bottom',
+        end: 'top top',
+        scrub: true
+      }
+    });
+
+    gsap.from('.studio-console', {
+      opacity: 0,
+      y: 90,
+      rotateX: 10,
+      duration: 1.1,
+      ease: window.CustomEase ? 'duckDrift' : 'power4.out',
+      scrollTrigger: { trigger: '.studio-console', start: 'top 82%' }
+    });
+
+    if (!reducedMotion && window.matchMedia('(min-width: 1025px)').matches) {
+      ScrollTrigger.create({
+        trigger: '.studio-console',
+        start: 'top 84px',
+        end: '+=620',
+        pin: true,
+        anticipatePin: 1
+      });
+    }
+
+    gsap.utils.toArray('.piano-container,.rhythm-container,.voice-container,.recorder-container,.midi-section,.synth-container,.voice-fx-booth').forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 70,
+        scale: 0.96,
+        duration: 0.9,
+        ease: window.CustomEase ? 'duckDrift' : 'power4.out',
+        scrollTrigger: { trigger: el, start: 'top 86%' }
+      });
+    });
+
+    gsap.to('.front-pad-grid span', {
+      opacity: 0.35,
+      scale: 0.86,
+      repeat: -1,
+      yoyo: true,
+      duration: 0.42,
+      stagger: { each: 0.045, grid: [4, 4], from: 'random' },
+      ease: window.CustomEase ? 'duckSnap' : 'power1.inOut'
+    });
+  } else {
+    document.querySelector('.hero-live-console')?.style.setProperty('opacity', '1');
+  }
+
+  function jumpToStudioPart(target) {
+    const map = {
+      piano: '.piano-container',
+      rhythm: '.rhythm-container',
+      voice: '.voice-container',
+      recorder: '.recorder-container'
+    };
+    const el = document.querySelector(map[target] || '#instruments');
+    if (!el) return;
+    if (window.lenis && typeof window.lenis.scrollTo === 'function') {
+      window.lenis.scrollTo(el, { offset: -64 });
+    } else {
+      el.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    }
+  }
+
+  document.querySelectorAll('[data-duck-jump]').forEach((btn) => {
+    btn.addEventListener('click', () => jumpToStudioPart(btn.dataset.duckJump));
+  });
+
+  const meters = Array.from(document.querySelectorAll('.front-meter span'));
+  function pulseMeters() {
+    if (!meters.length) return;
+    meters.forEach((bar) => {
+      const next = `${Math.round(20 + Math.random() * 74)}%`;
+      if (hasGsap && !reducedMotion) {
+        gsap.to(bar, { height: next, duration: 0.18, ease: window.CustomEase ? 'duckSnap' : 'power2.out' });
+      } else {
+        bar.style.height = next;
+      }
+    });
+    window.setTimeout(pulseMeters, 190);
+  }
+  pulseMeters();
+
+  if (hasGsap && !reducedMotion) {
+    document.querySelectorAll('.console-core,.console-rack,.piano-container,.rhythm-container,.voice-container,.recorder-container').forEach((panel) => {
+      panel.addEventListener('mousemove', (event) => {
+        const rect = panel.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(panel, { rotateY: x * 4, rotateX: y * -3, duration: 0.35, ease: 'duckDrift' });
+      });
+      panel.addEventListener('mouseleave', () => {
+        gsap.to(panel, { rotateY: 0, rotateX: 0, duration: 0.45, ease: 'duckDrift' });
+      });
+    });
+  }
+
+  const recordBtn = document.getElementById('recordBtn');
+  const stopRecBtn = document.getElementById('stopRecBtn');
+  const playRecBtn = document.getElementById('playRecBtn');
+  const statusText = document.getElementById('statusText');
+  const statusDot = document.getElementById('statusDot');
+  const recordingTime = document.getElementById('recordingTime');
+  const canvas = document.getElementById('recorderCanvas');
+  const canvasCtx = canvas ? canvas.getContext('2d') : null;
+
+  let mediaRecorder = null;
+  let recordedChunks = [];
+  let audioUrl = null;
+  let micStream = null;
+  let recorderAudioCtx = null;
+  let analyser = null;
+  let drawFrame = null;
+  let timerId = null;
+  let startedAt = 0;
+
+  function setStatus(text) {
+    if (statusText) statusText.textContent = text;
+  }
+
+  function setRecorderState(state) {
+    if (recordBtn) {
+      recordBtn.disabled = state === 'recording';
+      recordBtn.classList.toggle('recording', state === 'recording');
+    }
+    if (stopRecBtn) stopRecBtn.disabled = state !== 'recording';
+    if (playRecBtn) playRecBtn.disabled = state === 'recording' || !audioUrl;
+    if (statusDot) statusDot.classList.toggle('recording', state === 'recording');
+  }
+
+  function updateClock() {
+    const elapsed = Math.floor((Date.now() - startedAt) / 1000);
+    const minutes = String(Math.floor(elapsed / 60)).padStart(2, '0');
+    const seconds = String(elapsed % 60).padStart(2, '0');
+    if (recordingTime) recordingTime.textContent = `${minutes}:${seconds}`;
+  }
+
+  function drawRecorderWave() {
+    if (!canvas || !canvasCtx || !analyser) return;
+    const ratio = window.devicePixelRatio || 1;
+    const width = Math.max(1, canvas.offsetWidth);
+    const height = Math.max(1, canvas.offsetHeight);
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    canvasCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    const data = new Uint8Array(analyser.fftSize);
+    analyser.getByteTimeDomainData(data);
+    canvasCtx.clearRect(0, 0, width, height);
+    canvasCtx.fillStyle = 'rgba(5,8,6,.72)';
+    canvasCtx.fillRect(0, 0, width, height);
+    canvasCtx.lineWidth = 2;
+    canvasCtx.strokeStyle = '#caff72';
+    canvasCtx.beginPath();
+
+    const step = width / data.length;
+    data.forEach((value, index) => {
+      const x = index * step;
+      const y = (value / 255) * height;
+      if (index === 0) canvasCtx.moveTo(x, y);
+      else canvasCtx.lineTo(x, y);
+    });
+    canvasCtx.stroke();
+    drawFrame = requestAnimationFrame(drawRecorderWave);
+  }
+
+  async function startFrontRecording() {
+    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
+      setStatus('MICROFONE NÃO SUPORTADO NESTE NAVEGADOR');
+      return;
+    }
+    if (mediaRecorder?.state === 'recording') return;
+
+    try {
+      if (audioUrl) URL.revokeObjectURL(audioUrl);
+      audioUrl = null;
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      recordedChunks = [];
+      mediaRecorder = new MediaRecorder(micStream);
+      recorderAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = recorderAudioCtx.createAnalyser();
+      analyser.fftSize = 1024;
+      recorderAudioCtx.createMediaStreamSource(micStream).connect(analyser);
+
+      mediaRecorder.addEventListener('dataavailable', (event) => {
+        if (event.data.size > 0) recordedChunks.push(event.data);
+      });
+
+      mediaRecorder.addEventListener('stop', () => {
+        audioUrl = URL.createObjectURL(new Blob(recordedChunks, { type: 'audio/webm' }));
+        setStatus('GRAVACAO PRONTA');
+        setRecorderState('ready');
+      }, { once: true });
+
+      mediaRecorder.start();
+      startedAt = Date.now();
+      updateClock();
+      timerId = window.setInterval(updateClock, 250);
+      setStatus('GRAVANDO...');
+      setRecorderState('recording');
+      drawRecorderWave();
+    } catch (error) {
+      setStatus('PERMISSÃO DE MICROFONE BLOQUEADA');
+      setRecorderState('idle');
+    }
+  }
+
+  function stopFrontRecording() {
+    if (mediaRecorder?.state === 'recording') mediaRecorder.stop();
+    if (timerId) window.clearInterval(timerId);
+    if (drawFrame) cancelAnimationFrame(drawFrame);
+    if (micStream) micStream.getTracks().forEach((track) => track.stop());
+    if (recorderAudioCtx) recorderAudioCtx.close().catch(() => {});
+    timerId = null;
+    drawFrame = null;
+    micStream = null;
+    recorderAudioCtx = null;
+    analyser = null;
+  }
+
+  function activeEffects() {
+    return Array.from(document.querySelectorAll('.effect-card.active')).map((card) => card.dataset.effect);
+  }
+
+  function effectAmount(effectName, fallback) {
+    const slider = document.querySelector(`.effect-card[data-effect="${effectName}"] .effect-slider`);
+    return slider ? Number(slider.value) / 100 : fallback;
+  }
+
+  function makeImpulse(ctx, seconds) {
+    const length = Math.max(1, Math.floor(ctx.sampleRate * seconds));
+    const buffer = ctx.createBuffer(2, length, ctx.sampleRate);
+    for (let channel = 0; channel < 2; channel += 1) {
+      const data = buffer.getChannelData(channel);
+      for (let i = 0; i < length; i += 1) {
+        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 2.2);
+      }
+    }
+    return buffer;
+  }
+
+  function playFrontRecording() {
+    if (!audioUrl) {
+      setStatus('GRAVA PRIMEIRO');
+      return;
+    }
+
+    const fx = activeEffects();
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const audio = new Audio(audioUrl);
+    const source = ctx.createMediaElementSource(audio);
+    const master = ctx.createGain();
+    master.gain.value = 0.92;
+
+    let current = source;
+
+    if (fx.includes('chipmunk')) audio.playbackRate = Math.min(2, 1 + effectAmount('chipmunk', 0.8) * 0.5);
+    if (fx.includes('deep')) audio.playbackRate = Math.max(0.55, 1 - effectAmount('deep', 0.7) * 0.35);
+
+    if (fx.includes('robot') || fx.includes('autotune')) {
+      const filter = ctx.createBiquadFilter();
+      filter.type = fx.includes('robot') ? 'bandpass' : 'peaking';
+      filter.frequency.value = fx.includes('robot') ? 900 : 1250;
+      filter.Q.value = fx.includes('robot') ? 8 : 5;
+      current.connect(filter);
+      current = filter;
+    }
+
+    current.connect(master);
+    master.connect(ctx.destination);
+
+    if (fx.includes('echo')) {
+      const delay = ctx.createDelay(1);
+      const feedback = ctx.createGain();
+      const wet = ctx.createGain();
+      delay.delayTime.value = 0.18 + effectAmount('echo', 0.4) * 0.28;
+      feedback.gain.value = 0.22;
+      wet.gain.value = 0.32;
+      current.connect(delay);
+      delay.connect(feedback);
+      feedback.connect(delay);
+      delay.connect(wet);
+      wet.connect(ctx.destination);
+    }
+
+    if (fx.includes('reverb')) {
+      const convolver = ctx.createConvolver();
+      const wet = ctx.createGain();
+      convolver.buffer = makeImpulse(ctx, 1.1 + effectAmount('reverb', 0.3) * 2.4);
+      wet.gain.value = 0.34;
+      current.connect(convolver);
+      convolver.connect(wet);
+      wet.connect(ctx.destination);
+    }
+
+    audio.addEventListener('ended', () => {
+      setStatus('GRAVACAO PRONTA');
+      ctx.close().catch(() => {});
+    }, { once: true });
+
+    setStatus(`TOCANDO FX: ${fx.length ? fx.join(' / ').toUpperCase() : 'RAW'}`);
+    audio.play().catch(() => setStatus('BROWSER BLOQUEOU ÁUDIO'));
+  }
+
+  function captureButton(button, handler) {
+    if (!button) return;
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      handler();
+    }, true);
+  }
+
+  captureButton(recordBtn, startFrontRecording);
+  captureButton(stopRecBtn, stopFrontRecording);
+  captureButton(playRecBtn, playFrontRecording);
+  setRecorderState('idle');
+})();
+</script>
+<script>
+/* DUCK-2000 — tab-visibility perf guard (pausa o ticker do GSAP quando a aba está oculta) */
+(function(){
+  if (!window.gsap || !gsap.ticker) return;
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) gsap.ticker.lagSmoothing(0);
+    else gsap.ticker.lagSmoothing(500);
+  });
+})();
+</script>
+<noscript>
+  <div style="position:fixed;inset:0;background:#080e08;color:#efe7d0;font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;z-index:99999;">
+    <h1 style="color:#9acb6b;font-family:'Space Grotesk',sans-serif;font-size:2rem;margin-bottom:1rem;letter-spacing:.02em;">DUCK — Produção Musical</h1>
+    <p style="max-width:32rem;line-height:1.6;font-size:1.05rem;">Este site é uma experiência interativa que depende de JavaScript e da Web Audio API. Ative o JavaScript no seu navegador para explorar o estúdio, os instrumentos e o portfólio de Duck, produtor musical de Aracaju.</p>
+    <p style="margin-top:1.5rem;font-size:.9rem;opacity:.7;">@belentani_ · heyduck.netlify.app</p>
+  </div>
+</noscript>
 
 </body>
 </html>
